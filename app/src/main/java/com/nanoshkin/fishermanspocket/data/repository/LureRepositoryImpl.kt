@@ -4,18 +4,17 @@ import com.nanoshkin.fishermanspocket.data.db.LureDao
 import com.nanoshkin.fishermanspocket.data.entities.LureEntity
 import com.nanoshkin.fishermanspocket.domain.models.Lure
 import com.nanoshkin.fishermanspocket.domain.repository.LureRepository
+import kotlinx.coroutines.flow.Flow
 
 class LureRepositoryImpl(
     private val dao: LureDao
 ) : LureRepository {
 
-//    override fun getAllLures(): Flow<List<Lure>> {
-//        return dao.getAllLures()
-//    }
+    override suspend fun getAllLures(): Flow<List<Lure>> {
+        return dao.getAllLures()
+    }
 
-    override fun getAllLures(): List<Lure> = dao.getAllLures()
-
-    override fun saveLure(lure: Lure) {
+    override suspend fun saveLure(lure: Lure) {
         dao.insertLure(mapToLureEntity(lure))
     }
 

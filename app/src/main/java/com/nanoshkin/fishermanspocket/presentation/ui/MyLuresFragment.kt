@@ -1,24 +1,21 @@
-package com.nanoshkin.fishermanspocket.presentation.ui.lures
+package com.nanoshkin.fishermanspocket.presentation.ui
 
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import com.nanoshkin.fishermanspocket.R
 import com.nanoshkin.fishermanspocket.adapter.LureListAdapter
 import com.nanoshkin.fishermanspocket.databinding.FragmentMyLuresBinding
+import com.nanoshkin.fishermanspocket.presentation.viewmodels.LureViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collectLatest
 
 @AndroidEntryPoint
 class MyLuresFragment : Fragment(R.layout.fragment_my_lures) {
-    private val viewModel: MyLuresViewModel by viewModels()
+    private val viewModel: LureViewModel by viewModels()
     private lateinit var binding: FragmentMyLuresBinding
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        viewModel.onRefresh()
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -28,8 +25,13 @@ class MyLuresFragment : Fragment(R.layout.fragment_my_lures) {
         val adapter = LureListAdapter()
         binding.lureListRecyclerView.adapter = adapter
 
-        viewModel.dataLures.observe(viewLifecycleOwner) {
-            adapter.submitList(it)
+//        viewModel.dataLures.observe(viewLifecycleOwner) {
+//            adapter.submitList(it)
+//        }
+        lifecycleScope.launchWhenStarted {
+            viewModel.dataLures.collectLatest {
+                adapter.submitList(it)
+            }
         }
 
     }

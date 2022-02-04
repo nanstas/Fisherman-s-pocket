@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".presentation.ui.lures.MyLuresFragment">
+    tools:context=".presentation.ui.MyLuresFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/lure_list_recycler_view"

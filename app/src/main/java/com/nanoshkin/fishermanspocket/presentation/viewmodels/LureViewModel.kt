@@ -1,4 +1,4 @@
-package com.nanoshkin.fishermanspocket.presentation.ui.lures
+package com.nanoshkin.fishermanspocket.presentation.viewmodels
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -6,30 +6,18 @@ import androidx.lifecycle.viewModelScope
 import com.nanoshkin.fishermanspocket.domain.models.Lure
 import com.nanoshkin.fishermanspocket.domain.models.LureType
 import com.nanoshkin.fishermanspocket.domain.usecases.GetAllLuresUseCase
+import com.nanoshkin.fishermanspocket.domain.usecases.SaveLureUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.channels.BufferOverflow
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class MyLuresViewModel @Inject constructor(
-    private val getAllLuresUseCase: GetAllLuresUseCase
+class LureViewModel @Inject constructor(
+    private val getAllLuresUseCase: GetAllLuresUseCase,
+    private val saveLureUseCase: SaveLureUseCase
 ) : ViewModel() {
-
-    private val emptyLure = Lure(
-        id = null,
-        name = "",
-        manufacturer = "",
-        type = LureType.OTHER,
-        divingDepth = "",
-        floatation = "",
-        weight = 0,
-        length = 0,
-        description = "",
-        color = "",
-        imageUrl = null,
-        effectiveness = 0,
-        notes = "",
-    )
 
     private val testLure = Lure(
         id = null,
@@ -47,21 +35,18 @@ class MyLuresViewModel @Inject constructor(
         notes = "",
     )
 
-    private val _dataLures = MutableLiveData<List<Lure>>()
-    val dataLures = _dataLures
+    private val _dataLures = MutableSharedFlow<List<Lure>>(replay = 1, onBufferOverflow = BufferOverflow.DROP_OLDEST)
+    val dataLures: SharedFlow<List<Lure>> = _dataLures.asSharedFlow()
 
     init {
-        getAllLures()
-    }
-
-    private fun getAllLures() {
         viewModelScope.launch {
-            _dataLures.value = getAllLuresUseCase.execute()
+            _dataLures.emitAll(getAllLuresUseCase())
         }
     }
 
-//    private val _text = MutableLiveData<String>().apply {
-//        value = "This is My lures Fragment"
-//    }
-//    val text: LiveData<String> = _text
+    fun save(lure: Lure) {
+        viewModelScope.launch {
+            saveLureUseCase(lure = lure)
+        }
+    }
 }

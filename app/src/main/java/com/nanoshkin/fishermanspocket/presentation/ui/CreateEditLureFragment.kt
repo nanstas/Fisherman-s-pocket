@@ -1,4 +1,4 @@
-package com.nanoshkin.fishermanspocket.presentation.ui.create_edit_lure
+package com.nanoshkin.fishermanspocket.presentation.ui
 
 import android.os.Bundle
 import android.view.View
@@ -7,14 +7,15 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.nanoshkin.fishermanspocket.R
 import com.nanoshkin.fishermanspocket.databinding.FragmentCreateEditLureBinding
-import com.nanoshkin.fishermanspocket.domain.models.LureType
 import com.nanoshkin.fishermanspocket.domain.models.Lure
+import com.nanoshkin.fishermanspocket.domain.models.LureType
+import com.nanoshkin.fishermanspocket.presentation.viewmodels.LureViewModel
 import com.nanoshkin.fishermanspocket.utils.Utils.convertNewsCategory
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class CreateEditLureFragment : Fragment(R.layout.fragment_create_edit_lure) {
-    private val viewModel: CreateEditLureViewModel by viewModels()
+    private val viewModel: LureViewModel by viewModels()
     private lateinit var binding: FragmentCreateEditLureBinding
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -26,13 +27,9 @@ class CreateEditLureFragment : Fragment(R.layout.fragment_create_edit_lure) {
             val adapter = ArrayAdapter(requireContext(), R.layout.menu_item, LureType.values())
             typeDropMenuAutoCompleteTextView.setAdapter(adapter)
 
-//            typeDropMenuAutoCompleteTextView.setOnItemClickListener { parent, _, position, _ ->
-//                val selectedItem = parent.getItemAtPosition(position)
-//
-//            }
-
             saveButton.setOnClickListener {
                 viewModel.save(lureForSave())
+
             }
         }
     }

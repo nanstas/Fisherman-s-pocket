@@ -7,31 +7,31 @@
 
     <fragment
         android:id="@+id/nav_my_lures"
-        android:name="com.nanoshkin.pocketoffisherman.presentation.ui.lures.MyLuresFragment"
+        android:name="com.nanoshkin.fishermanspocket.presentation.ui.MyLuresFragment"
         android:label="@string/menu_my_lures"
         tools:layout="@layout/fragment_my_lures" />
 
     <fragment
         android:id="@+id/nav_weather"
-        android:name="com.nanoshkin.pocketoffisherman.presentation.ui.weather.WeatherFragment"
+        android:name="com.nanoshkin.fishermanspocket.presentation.ui.WeatherFragment"
         android:label="@string/menu_weather"
         tools:layout="@layout/fragment_weather" />
 
     <fragment
         android:id="@+id/nav_info"
-        android:name="com.nanoshkin.pocketoffisherman.presentation.ui.info.InfoFragment"
+        android:name="com.nanoshkin.fishermanspocket.presentation.ui.InfoFragment"
         android:label="@string/menu_info"
         tools:layout="@layout/fragment_info" />
 
     <activity
         android:id="@+id/mainActivity"
-        android:name="com.nanoshkin.pocketoffisherman.presentation.MainActivity"
+        android:name="com.nanoshkin.fishermanspocket.presentation.MainActivity"
         android:label="app_bar_main"
         tools:layout="@layout/app_bar_main" />
 
     <fragment
         android:id="@+id/createEditLureFragment"
-        android:name="com.nanoshkin.pocketoffisherman.presentation.ui.create_edit_lure.CreateEditLureFragment"
+        android:name="com.nanoshkin.fishermanspocket.presentation.ui.CreateEditLureFragment"
         android:label="fragment_create_edit_lure"
         tools:layout="@layout/fragment_create_edit_lure" />
 </navigation>
