@@ -1,0 +1,44 @@
+package com.nanoshkin.fishermanspocket.di
+
+import android.content.Context
+import androidx.room.Room
+import com.nanoshkin.fishermanspocket.data.db.AppDb
+import com.nanoshkin.fishermanspocket.data.db.LureDao
+import com.nanoshkin.fishermanspocket.data.repository.LureRepositoryImpl
+import com.nanoshkin.fishermanspocket.domain.repository.LureRepository
+import com.nanoshkin.fishermanspocket.domain.usecases.GetAllLuresUseCase
+import com.nanoshkin.fishermanspocket.domain.usecases.SaveLureUseCase
+import dagger.Module
+import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
+import dagger.hilt.components.SingletonComponent
+import javax.inject.Singleton
+
+@Module
+@InstallIn(SingletonComponent::class)
+object Module {
+    @Provides
+    @Singleton
+    fun provideLureRepository(dao: LureDao): LureRepository = LureRepositoryImpl(dao = dao)
+
+    @Provides
+    fun provideGetAllLuresUseCase(lureRepository: LureRepository): GetAllLuresUseCase {
+        return GetAllLuresUseCase(lureRepository = lureRepository)
+    }
+
+    @Provides
+    fun provideSaveLureUseCase(lureRepository: LureRepository): SaveLureUseCase {
+        return SaveLureUseCase(lureRepository = lureRepository)
+    }
+
+    @Provides
+    fun provideLureDao(db: AppDb): LureDao = db.getLureDao()
+
+    @Provides
+    @Singleton
+    fun provideDb(@ApplicationContext context: Context): AppDb {
+        return Room.databaseBuilder(context, AppDb::class.java, "app.db")
+            .build()
+    }
+}

@@ -1,3 +1,46 @@
 <resources>
     <string name="app_name">Fisherman’s pocket</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_my_lures">My lures</string>
+    <string name="menu_weather">Weather</string>
+    <string name="menu_info">Info</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+    <string name="name">Name</string>
+    <string name="manufacturer">Manufacturer</string>
+    <string name="manufacturer_with_colon">Manufacturer:</string>
+    <string name="type">Type</string>
+    <string name="type_with_colon">Type:</string>
+    <string name="diving_depth">Deep, m</string>
+    <string name="diving_depth_with_colon">Deep, m:</string>
+    <string name="floatation">Floatation</string>
+    <string name="floatation_with_colon">Floatation:</string>
+    <string name="description">Description</string>
+    <string name="weight">Weight</string>
+    <string name="weight_with_colon">Weight, gr:</string>
+    <string name="version">Версия:</string>
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
+    <string name="length">Length</string>
+    <string name="length_with_colon">Length, mm:</string>
+    <string name="add_photo">Add photo</string>
+    <string name="notes">Notes</string>
+    <string name="color">Color</string>
+    <string name="color_with_colon">Color:</string>
+    <string name="add_note">Add note</string>
+    <string name="caught_fish">Caught fish</string>
+    <string name="fish_caught">Fish caught</string>
+    <string name="lure_image">Lure image</string>
+    <string name="icon_caught_fish">Caught fish icon</string>
+    <string name="icon_diving_depth">Diving depth lure icon</string>
+    <string name="icon_floatation">Floatation lure icon</string>
+    <string name="icon_weight">weight lure icon</string>
+    <string name="icon_length">Length lure icon</string>
+
 </resources>
