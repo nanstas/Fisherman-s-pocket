@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.Flow
 interface LureDao {
     @Transaction
     @Query("SELECT * FROM LureEntity")
-     fun getAllLures(): Flow<List<Lure>>
+    fun getAllLures(): Flow<List<Lure>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertLure(lure: LureEntity)

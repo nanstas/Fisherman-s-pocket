@@ -73,7 +73,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/deep_drop_menu_text_input_layout"
+                android:id="@+id/diving_depth_drop_menu_text_input_layout"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -84,7 +84,7 @@
                 app:layout_constraintTop_toBottomOf="@id/type_drop_menu_text_input_layout">
 
                 <AutoCompleteTextView
-                    android:id="@+id/deep_drop_menu_auto_complete_text_view"
+                    android:id="@+id/diving_depth_drop_menu_auto_complete_text_view"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="text"
@@ -100,7 +100,7 @@
                 android:layout_marginTop="@dimen/spacing_small"
                 android:hint="@string/floatation"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/deep_drop_menu_text_input_layout"
+                app:layout_constraintStart_toEndOf="@id/diving_depth_drop_menu_text_input_layout"
                 app:layout_constraintTop_toBottomOf="@id/type_drop_menu_text_input_layout">
 
                 <AutoCompleteTextView
@@ -120,7 +120,7 @@
                 android:hint="@string/weight"
                 app:layout_constraintEnd_toStartOf="@id/length_text_input_layout"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/deep_drop_menu_text_input_layout">
+                app:layout_constraintTop_toBottomOf="@id/diving_depth_drop_menu_text_input_layout">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/weight_edit_text"

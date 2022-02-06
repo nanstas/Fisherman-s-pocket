@@ -23,12 +23,12 @@
     <string name="floatation">Плавучесть</string>
     <string name="floatation_with_colon">Плавучесть:</string>
     <string name="description">Описание</string>
-    <string name="weight">Вес</string>
+    <string name="weight">Вес, гр</string>
     <string name="weight_with_colon">Вес, гр:</string>
     <string name="version">Версия:</string>
     <string name="save">Сохранить</string>
     <string name="cancel">Отмена</string>
-    <string name="length">Длинна</string>
+    <string name="length">Длинна, мм</string>
     <string name="length_with_colon">Длинна, мм:</string>
     <string name="add_photo">Добавить фото</string>
     <string name="notes">Заметки</string>

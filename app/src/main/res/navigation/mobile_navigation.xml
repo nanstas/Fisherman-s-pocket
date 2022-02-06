@@ -33,5 +33,9 @@
         android:id="@+id/createEditLureFragment"
         android:name="com.nanoshkin.fishermanspocket.presentation.ui.CreateEditLureFragment"
         android:label="fragment_create_edit_lure"
-        tools:layout="@layout/fragment_create_edit_lure" />
+        tools:layout="@layout/fragment_create_edit_lure" >
+        <action
+            android:id="@+id/action_createEditLureFragment_to_nav_my_lures"
+            app:destination="@id/nav_my_lures" />
+    </fragment>
 </navigation>

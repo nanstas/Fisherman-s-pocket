@@ -22,12 +22,12 @@
     <string name="floatation">Floatation</string>
     <string name="floatation_with_colon">Floatation:</string>
     <string name="description">Description</string>
-    <string name="weight">Weight</string>
+    <string name="weight">Weight, gr</string>
     <string name="weight_with_colon">Weight, gr:</string>
     <string name="version">Версия:</string>
     <string name="save">Save</string>
     <string name="cancel">Cancel</string>
-    <string name="length">Length</string>
+    <string name="length">Length, mm</string>
     <string name="length_with_colon">Length, mm:</string>
     <string name="add_photo">Add photo</string>
     <string name="notes">Notes</string>

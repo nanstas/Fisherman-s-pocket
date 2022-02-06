@@ -1,10 +1,12 @@
 package com.nanoshkin.fishermanspocket.utils
 
+import com.nanoshkin.fishermanspocket.domain.models.LureDivingDepth
+import com.nanoshkin.fishermanspocket.domain.models.LureFloatation
 import com.nanoshkin.fishermanspocket.domain.models.LureType
 
 object Utils {
-    fun convertNewsCategory(category: String): LureType {
-        return when (category) {
+    fun convertLureTypeCategory(lureType: String): LureType {
+        return when (lureType) {
             "MINNOW" -> LureType.MINNOW
             "SHAD" -> LureType.SHAD
             "FAT" -> LureType.FAT
@@ -21,6 +23,31 @@ object Utils {
             "SPOON" -> LureType.SPOON
             "SPINNER" -> LureType.SPINNER
             else -> LureType.OTHER
+        }
+    }
+
+    fun convertLureDivingDepthCategory(divingDepth: String): LureDivingDepth {
+        return when (divingDepth) {
+            "SSR" -> LureDivingDepth.SSR
+            "SR" -> LureDivingDepth.SR
+            "MDR" -> LureDivingDepth.MDR
+            "DD" -> LureDivingDepth.DD
+            "EDD" -> LureDivingDepth.EDD
+            else -> LureDivingDepth.UNKNOWN
+        }
+    }
+
+    fun convertLureFloatationCategory(floatation: String): LureFloatation {
+        return when (floatation) {
+            "FS" -> LureFloatation.FS
+            "S" -> LureFloatation.S
+            "SS" -> LureFloatation.SS
+            "SSS" -> LureFloatation.SSS
+            "SP" -> LureFloatation.SP
+            "SF" -> LureFloatation.SP
+            "F" -> LureFloatation.F
+            "FF" -> LureFloatation.FF
+            else -> LureFloatation.UNKNOWN
         }
     }
 }

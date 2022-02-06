@@ -25,9 +25,6 @@ class MyLuresFragment : Fragment(R.layout.fragment_my_lures) {
         val adapter = LureListAdapter()
         binding.lureListRecyclerView.adapter = adapter
 
-//        viewModel.dataLures.observe(viewLifecycleOwner) {
-//            adapter.submitList(it)
-//        }
         lifecycleScope.launchWhenStarted {
             viewModel.dataLures.collectLatest {
                 adapter.submitList(it)

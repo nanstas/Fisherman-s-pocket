@@ -41,8 +41,8 @@ fun Lure.toEntity() = LureEntity(
     name = name,
     manufacturer = manufacturer,
     type = type?.name,
-    divingDepth = divingDepth,
-    floatation = floatation,
+    divingDepth = divingDepth?.name,
+    floatation = floatation?.name,
     weight = weight,
     length = length,
     description = description,
@@ -53,4 +53,3 @@ fun Lure.toEntity() = LureEntity(
 )
 
 fun List<Lure>.toEntity(): List<LureEntity> = map(Lure::toEntity)
-

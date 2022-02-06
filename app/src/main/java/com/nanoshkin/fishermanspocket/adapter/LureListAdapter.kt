@@ -28,12 +28,12 @@ class LureListAdapter() :
         fun bind(lure: Lure) {
             with(binding) {
                 nameTextView.text = lure.name
-                typeTextView.text = lure.type.toString()
-                divingDepthTextView.text = lure.divingDepth
-                floatationTextView.text = lure.floatation
-                weightTextView.text = lure.weight.toString()
-                lengthTextView.text = lure.length.toString()
-                caughtFishCountTextView.text = lure.effectiveness.toString()
+                typeTextView.text = lure.type?.type ?: "—"
+                divingDepthTextView.text = if (lure.divingDepth == null || lure.divingDepth.divingDepth == "Unknown") "—" else lure.divingDepth.divingDepth
+                floatationTextView.text = if (lure.floatation == null || lure.floatation.floatation == "Unknown") "—" else lure.floatation.floatation
+                weightTextView.text = lure.weight?.toString() ?: "—"
+                lengthTextView.text = lure.length?.toString()  ?: "—"
+                caughtFishCountTextView.text = lure.effectiveness?.toString() ?: "0"
             }
         }
     }
