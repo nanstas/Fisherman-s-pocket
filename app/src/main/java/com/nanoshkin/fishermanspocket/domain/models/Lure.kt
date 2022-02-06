@@ -1,5 +1,9 @@
 package com.nanoshkin.fishermanspocket.domain.models
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
 data class Lure(
     val id: Int? = null,
     val name: String,
@@ -14,4 +18,4 @@ data class Lure(
     val imageUrl: String? = null,
     val effectiveness: Int? = null,
     val notes: String? = null,
-)
+): Parcelable

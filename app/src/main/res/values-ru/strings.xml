@@ -19,7 +19,7 @@
     <string name="type">Тип</string>
     <string name="type_with_colon">Тип:</string>
     <string name="diving_depth">Заглубление, м</string>
-    <string name="diving_depth_with_colon">Заглубление, м:</string>
+    <string name="diving_depth_with_colon">Заглубление:</string>
     <string name="floatation">Плавучесть</string>
     <string name="floatation_with_colon">Плавучесть:</string>
     <string name="description">Описание</string>
@@ -43,5 +43,7 @@
     <string name="icon_floatation">Иконка плавучести приманки</string>
     <string name="icon_weight">Иконка веса приманки</string>
     <string name="icon_length">Иконка длинны приманки</string>
+    <string name="fragment_create_edit_lure">Создание приманки</string>
+    <string name="lure">Приманка</string>
 
 </resources>

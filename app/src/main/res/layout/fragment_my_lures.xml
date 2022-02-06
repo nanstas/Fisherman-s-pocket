@@ -16,6 +16,6 @@
         android:clipToPadding="false"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         tools:itemCount="2"
-        tools:listitem="@layout/item_lure" />
+        tools:listitem="@layout/iteml_lure_min" />
 
     </LinearLayout>

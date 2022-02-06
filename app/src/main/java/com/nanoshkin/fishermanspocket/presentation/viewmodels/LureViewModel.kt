@@ -2,6 +2,7 @@ package com.nanoshkin.fishermanspocket.presentation.viewmodels
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.nanoshkin.fishermanspocket.adapter.OnLureItemClickListener
 import com.nanoshkin.fishermanspocket.domain.models.Lure
 import com.nanoshkin.fishermanspocket.domain.usecases.GetAllLuresUseCase
 import com.nanoshkin.fishermanspocket.domain.usecases.SaveLureUseCase
@@ -18,7 +19,7 @@ import javax.inject.Inject
 class LureViewModel @Inject constructor(
     private val getAllLuresUseCase: GetAllLuresUseCase,
     private val saveLureUseCase: SaveLureUseCase
-) : ViewModel() {
+) : ViewModel(){
 
     private val _dataLures = MutableSharedFlow<List<Lure>>(replay = 1, onBufferOverflow = BufferOverflow.DROP_OLDEST)
     val dataLures: SharedFlow<List<Lure>> = _dataLures.asSharedFlow()
@@ -34,4 +35,5 @@ class LureViewModel @Inject constructor(
             saveLureUseCase(lure = lure)
         }
     }
+
 }

@@ -18,14 +18,38 @@
 
         <TextView
             android:id="@+id/name_text_view"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:textSize="@dimen/font_large"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/caught_fish_image_view"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="JACKALL MAG SQUAD 128 SP" />
+
+        <ImageView
+            android:id="@+id/caught_fish_image_view"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginStart="@dimen/spacing_large"
+            android:src="@drawable/ic_caught_fish"
+            app:layout_constraintBottom_toBottomOf="@+id/name_text_view"
+            app:layout_constraintEnd_toStartOf="@id/caught_fish_count_text_view"
+            app:layout_constraintStart_toEndOf="@id/name_text_view"
+            app:layout_constraintTop_toTopOf="@+id/name_text_view"
+            app:tint="?attr/colorControlNormal"
+            android:contentDescription="@string/icon_caught_fish" />
+
+        <TextView
+            android:id="@+id/caught_fish_count_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_tiny"
+            app:layout_constraintBottom_toBottomOf="@+id/caught_fish_image_view"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/caught_fish_image_view"
+            app:layout_constraintTop_toTopOf="@+id/caught_fish_image_view"
+            tools:text="10" />
 
         <TextView
             android:id="@+id/manufacturer_label_text_view"

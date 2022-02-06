@@ -9,7 +9,11 @@
         android:id="@+id/nav_my_lures"
         android:name="com.nanoshkin.fishermanspocket.presentation.ui.MyLuresFragment"
         android:label="@string/menu_my_lures"
-        tools:layout="@layout/fragment_my_lures" />
+        tools:layout="@layout/fragment_my_lures" >
+        <action
+            android:id="@+id/action_nav_my_lures_to_fullLureFragment"
+            app:destination="@id/fullLureFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_weather"
@@ -32,10 +36,19 @@
     <fragment
         android:id="@+id/createEditLureFragment"
         android:name="com.nanoshkin.fishermanspocket.presentation.ui.CreateEditLureFragment"
-        android:label="fragment_create_edit_lure"
+        android:label="@string/fragment_create_edit_lure"
         tools:layout="@layout/fragment_create_edit_lure" >
         <action
             android:id="@+id/action_createEditLureFragment_to_nav_my_lures"
             app:destination="@id/nav_my_lures" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fullLureFragment"
+        android:name="com.nanoshkin.fishermanspocket.presentation.ui.FullLureFragment"
+        android:label="@string/lure" >
+        <argument
+            android:name="argLure"
+            app:argType="com.nanoshkin.fishermanspocket.domain.models.Lure" />
     </fragment>
 </navigation>

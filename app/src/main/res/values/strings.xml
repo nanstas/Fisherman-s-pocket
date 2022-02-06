@@ -18,7 +18,7 @@
     <string name="type">Type</string>
     <string name="type_with_colon">Type:</string>
     <string name="diving_depth">Deep, m</string>
-    <string name="diving_depth_with_colon">Deep, m:</string>
+    <string name="diving_depth_with_colon">Diving dept:</string>
     <string name="floatation">Floatation</string>
     <string name="floatation_with_colon">Floatation:</string>
     <string name="description">Description</string>
@@ -42,5 +42,7 @@
     <string name="icon_floatation">Floatation lure icon</string>
     <string name="icon_weight">weight lure icon</string>
     <string name="icon_length">Length lure icon</string>
+    <string name="fragment_create_edit_lure">Creating a lure</string>
+    <string name="lure">Lure</string>
 
 </resources>

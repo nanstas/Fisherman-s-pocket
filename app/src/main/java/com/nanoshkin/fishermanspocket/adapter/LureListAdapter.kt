@@ -1,20 +1,23 @@
 package com.nanoshkin.fishermanspocket.adapter
 
-
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.nanoshkin.fishermanspocket.databinding.ItemLureBinding
+import com.nanoshkin.fishermanspocket.databinding.ItemlLureMinBinding
 import com.nanoshkin.fishermanspocket.domain.models.Lure
 
-class LureListAdapter() :
+interface OnLureItemClickListener {
+    fun onCard(lure: Lure)
+}
+
+class LureListAdapter(private val onLureItemClickListener: OnLureItemClickListener) :
     ListAdapter<Lure, LureListAdapter.LureViewHolder>(LureDiffCallback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LureViewHolder {
-        val binding = ItemLureBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return LureViewHolder(binding)
+        val binding = ItemlLureMinBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return LureViewHolder(binding, onLureItemClickListener)
     }
 
     override fun onBindViewHolder(holder: LureViewHolder, position: Int) {
@@ -23,7 +26,8 @@ class LureListAdapter() :
     }
 
     class LureViewHolder(
-        private val binding: ItemLureBinding
+        private val binding: ItemlLureMinBinding,
+        private val onLureItemClickListener: OnLureItemClickListener
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bind(lure: Lure) {
             with(binding) {
@@ -34,6 +38,10 @@ class LureListAdapter() :
                 weightTextView.text = lure.weight?.toString() ?: "—"
                 lengthTextView.text = lure.length?.toString()  ?: "—"
                 caughtFishCountTextView.text = lure.effectiveness?.toString() ?: "0"
+
+                itemLureCardView.setOnClickListener {
+                    onLureItemClickListener.onCard(lure)
+                }
             }
         }
     }
