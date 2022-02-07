@@ -2,9 +2,11 @@ package com.nanoshkin.fishermanspocket.presentation.ui
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
+import com.bumptech.glide.Glide
 import com.nanoshkin.fishermanspocket.R
 import com.nanoshkin.fishermanspocket.databinding.FragmentFullLureBinding
 import com.nanoshkin.fishermanspocket.domain.models.Lure
@@ -36,6 +38,12 @@ class FullLureFragment: Fragment(R.layout.fragment_full_lure) {
             caughtFishCountTextView.text = lure.effectiveness?.toString() ?: "0"
             descriptionTextView.text = lure.description
             noteTextView.text = lure.notes
+
+            Glide.with(lureImageView.context)
+                .load(lure.imageUrl?.toUri())
+                .error(R.drawable.ic_no_photography_24)
+                .timeout(30_000)
+                .into(lureImageView)
         }
     }
 }

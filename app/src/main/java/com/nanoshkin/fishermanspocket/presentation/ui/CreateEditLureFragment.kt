@@ -1,11 +1,18 @@
 package com.nanoshkin.fishermanspocket.presentation.ui
 
+import android.app.Activity
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.github.dhaval2404.imagepicker.ImagePicker
 import com.nanoshkin.fishermanspocket.R
 import com.nanoshkin.fishermanspocket.databinding.FragmentCreateEditLureBinding
 import com.nanoshkin.fishermanspocket.domain.models.Lure
@@ -19,14 +26,51 @@ import com.nanoshkin.fishermanspocket.utils.Utils.convertLureTypeCategory
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class CreateEditLureFragment : Fragment(R.layout.fragment_create_edit_lure) {
+class CreateEditLureFragment : Fragment() {
+    private val photoRequestCode = 1
+    private val cameraRequestCode = 2
+
     private val viewModel: LureViewModel by viewModels()
     private lateinit var binding: FragmentCreateEditLureBinding
+
+    private var uri: Uri? = null
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        binding = FragmentCreateEditLureBinding.inflate(inflater, container, false)
+
+        binding.pickImageButton.setOnClickListener {
+            ImagePicker.with(this)
+                .crop()
+                .compress(2048)
+                .galleryOnly()
+                .galleryMimeTypes(
+                    arrayOf(
+                        "image/png",
+                        "image/jpeg",
+                    )
+                )
+                .start(photoRequestCode)
+        }
+
+        binding.takePhotoButton.setOnClickListener {
+            ImagePicker.with(this)
+                .crop()
+                .compress(2048)
+                .cameraOnly()
+                .start(cameraRequestCode)
+        }
+
+        return binding.root
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding = FragmentCreateEditLureBinding.bind(view)
+//        binding = FragmentCreateEditLureBinding.bind(view)
 
         with(binding) {
             val lureTypeAdapter =
@@ -62,8 +106,22 @@ class CreateEditLureFragment : Fragment(R.layout.fragment_create_edit_lure) {
                 description = descriptionEditText.text.toString(),
                 color = colorEditText.text.toString(),
                 effectiveness = caughtFishEditText.text.toString().toIntOrNull(),
-                notes = notesEditText.text.toString()
+                notes = notesEditText.text.toString(),
+                imageUrl = uri.toString()
             )
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode == ImagePicker.RESULT_ERROR) {
+            Toast.makeText(requireContext(), ImagePicker.getError(data), Toast.LENGTH_SHORT).show()
+            return
+        }
+        if (resultCode == Activity.RESULT_OK && requestCode == photoRequestCode || resultCode == Activity.RESULT_OK && requestCode == cameraRequestCode) {
+            uri = data?.data
+//            viewModel.changePhoto(uri, file)
+            return
         }
     }
 }

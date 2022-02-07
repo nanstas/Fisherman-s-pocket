@@ -30,7 +30,8 @@
     <string name="cancel">Отмена</string>
     <string name="length">Длинна, мм</string>
     <string name="length_with_colon">Длинна, мм:</string>
-    <string name="add_photo">Добавить фото</string>
+    <string name="take_photo">Сфотографировать</string>
+    <string name="pick_image">Загрузить изображение</string>
     <string name="notes">Заметки</string>
     <string name="color">Цвет</string>
     <string name="color_with_colon">Цвет:</string>

@@ -29,7 +29,8 @@
     <string name="cancel">Cancel</string>
     <string name="length">Length, mm</string>
     <string name="length_with_colon">Length, mm:</string>
-    <string name="add_photo">Add photo</string>
+    <string name="take_photo">Take photo</string>
+    <string name="pick_image">Pick image</string>
     <string name="notes">Notes</string>
     <string name="color">Color</string>
     <string name="color_with_colon">Color:</string>
