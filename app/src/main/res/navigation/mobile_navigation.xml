@@ -48,7 +48,7 @@
         android:name="com.nanoshkin.fishermanspocket.presentation.ui.FullLureFragment"
         android:label="@string/lure" >
         <argument
-            android:name="argLure"
-            app:argType="com.nanoshkin.fishermanspocket.domain.models.Lure" />
+            android:name="argLureId"
+            app:argType="integer" />
     </fragment>
 </navigation>

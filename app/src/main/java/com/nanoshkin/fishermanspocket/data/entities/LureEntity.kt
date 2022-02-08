@@ -31,7 +31,7 @@ data class LureEntity(
     @ColumnInfo(name = "imageUrl")
     val imageUrl: String?,
     @ColumnInfo(name = "effectiveness")
-    val effectiveness: Int?,
+    val effectiveness: Int,
     @ColumnInfo(name = "notes")
     val notes: String?,
 )

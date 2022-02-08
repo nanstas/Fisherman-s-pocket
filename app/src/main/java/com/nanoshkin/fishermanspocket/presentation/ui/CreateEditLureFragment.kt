@@ -138,7 +138,7 @@ class CreateEditLureFragment : Fragment() {
                 length = lengthEditText.text.toString().toIntOrNull(),
                 description = descriptionEditText.text.toString(),
                 color = colorEditText.text.toString(),
-                effectiveness = caughtFishEditText.text.toString().toIntOrNull(),
+                effectiveness = if (caughtFishEditText.text.isNullOrEmpty()) 0 else caughtFishEditText.text.toString().toInt(),
                 notes = notesEditText.text.toString(),
                 imageUrl = uri.toString()
             )

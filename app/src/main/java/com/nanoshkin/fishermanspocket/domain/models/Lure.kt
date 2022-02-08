@@ -16,6 +16,6 @@ data class Lure(
     val description: String? = null,
     val color: String? = null,
     val imageUrl: String? = null,
-    val effectiveness: Int? = null,
+    val effectiveness: Int = 0,
     val notes: String? = null,
 ): Parcelable

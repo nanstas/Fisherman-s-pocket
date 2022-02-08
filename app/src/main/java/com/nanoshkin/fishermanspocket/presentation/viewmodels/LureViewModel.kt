@@ -5,26 +5,35 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.nanoshkin.fishermanspocket.adapter.OnLureItemClickListener
 import com.nanoshkin.fishermanspocket.domain.models.Lure
 import com.nanoshkin.fishermanspocket.domain.usecases.GetAllLuresUseCase
+import com.nanoshkin.fishermanspocket.domain.usecases.GetLuresByIdUseCase
+import com.nanoshkin.fishermanspocket.domain.usecases.IncreaseInCaughtFishUseCase
 import com.nanoshkin.fishermanspocket.domain.usecases.SaveLureUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.BufferOverflow
-import kotlinx.coroutines.flow.MutableSharedFlow
-import kotlinx.coroutines.flow.SharedFlow
-import kotlinx.coroutines.flow.asSharedFlow
-import kotlinx.coroutines.flow.emitAll
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject
+import kotlin.properties.Delegates
 
 @HiltViewModel
 class LureViewModel @Inject constructor(
     private val getAllLuresUseCase: GetAllLuresUseCase,
-    private val saveLureUseCase: SaveLureUseCase
-) : ViewModel(){
+    private val saveLureUseCase: SaveLureUseCase,
+    private val increaseInCaughtFishUseCase: IncreaseInCaughtFishUseCase,
+    private val getLuresByIdUseCase: GetLuresByIdUseCase
+) : ViewModel() {
 
-    private val _dataLures = MutableSharedFlow<List<Lure>>(replay = 1, onBufferOverflow = BufferOverflow.DROP_OLDEST)
+    private var lureId by Delegates.notNull<Int>()
+
+    val currentLure: Flow<Lure> by lazy {
+        getLuresByIdUseCase(lureId)
+    }
+
+    private val _dataLures =
+        MutableSharedFlow<List<Lure>>(replay = 1, onBufferOverflow = BufferOverflow.DROP_OLDEST)
     val dataLures: SharedFlow<List<Lure>> = _dataLures.asSharedFlow()
 
     private val _currentLureImage = MutableLiveData<Uri?>()
@@ -35,6 +44,7 @@ class LureViewModel @Inject constructor(
             _dataLures.emitAll(getAllLuresUseCase())
         }
     }
+
 
     fun save(lure: Lure) {
         viewModelScope.launch {
@@ -50,4 +60,11 @@ class LureViewModel @Inject constructor(
         _currentLureImage.value = null
     }
 
+    fun increaseInCaughtFish(lure: Lure) = viewModelScope.launch(Dispatchers.Default) {
+        increaseInCaughtFishUseCase(lure)
+    }
+
+    fun init(lureId: Int) {
+        this.lureId = lureId
+    }
 }

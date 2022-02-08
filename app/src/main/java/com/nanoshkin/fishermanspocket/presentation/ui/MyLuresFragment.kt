@@ -27,7 +27,7 @@ class MyLuresFragment : Fragment(R.layout.fragment_my_lures) {
 
         val adapter = LureListAdapter(object : OnLureItemClickListener {
             override fun onCard(lure: Lure) {
-                val action = MyLuresFragmentDirections.actionNavMyLuresToFullLureFragment(lure)
+                val action = MyLuresFragmentDirections.actionNavMyLuresToFullLureFragment(lure.id!!)
                 findNavController().navigate(action)
             }
         })
