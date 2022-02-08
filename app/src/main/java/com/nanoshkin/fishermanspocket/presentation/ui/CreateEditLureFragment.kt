@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -39,7 +40,7 @@ class CreateEditLureFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentCreateEditLureBinding.inflate(inflater, container, false)
 
         binding.pickImageButton.setOnClickListener {
@@ -64,13 +65,25 @@ class CreateEditLureFragment : Fragment() {
                 .start(cameraRequestCode)
         }
 
+        viewModel.currentLureImage.observe(viewLifecycleOwner) { uri ->
+            if (uri == null) {
+                binding.currentLurePhotoGroup.visibility = View.GONE
+                return@observe
+            }
+            binding.currentLurePhotoGroup.visibility = View.VISIBLE
+            binding.currentLureImageView.setImageURI(uri)
+        }
+
+        binding.removeCurrentLureImageButton.setOnClickListener {
+            viewModel.removeCurrentLureImage()
+            uri = null
+        }
+
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-//        binding = FragmentCreateEditLureBinding.bind(view)
 
         with(binding) {
             val lureTypeAdapter =
@@ -86,8 +99,28 @@ class CreateEditLureFragment : Fragment() {
             floatationDropMenuAutoCompleteTextView.setAdapter(lureFloatationAdapter)
 
             saveButton.setOnClickListener {
+                if (nameEditText.text.isNullOrEmpty()) {
+                    Toast.makeText(requireContext(), R.string.toast_fill_field_name, Toast.LENGTH_LONG).show()
+                    return@setOnClickListener
+                }
+
                 viewModel.save(lureForSave())
                 findNavController().navigate(R.id.action_createEditLureFragment_to_nav_my_lures)
+            }
+
+            cancelButton.setOnClickListener {
+                val activity = activity ?: return@setOnClickListener
+                val dialog = AlertDialog.Builder(activity)
+                dialog.setMessage(R.string.alert_dialog_cancellation)
+                    .setPositiveButton(R.string.ok) { alertDialog, _ ->
+                        alertDialog.dismiss()
+                        findNavController().navigateUp()
+                    }
+                    .setNegativeButton(R.string.cancel) { alertDialog, _ ->
+                        alertDialog.cancel()
+                    }
+                    .create()
+                    .show()
             }
         }
     }
@@ -120,7 +153,7 @@ class CreateEditLureFragment : Fragment() {
         }
         if (resultCode == Activity.RESULT_OK && requestCode == photoRequestCode || resultCode == Activity.RESULT_OK && requestCode == cameraRequestCode) {
             uri = data?.data
-//            viewModel.changePhoto(uri, file)
+            viewModel.changeCurrentLureImage(uri)
             return
         }
     }

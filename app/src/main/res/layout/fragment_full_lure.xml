@@ -255,11 +255,11 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:contentDescription="@string/lure_image"
-            android:src="@drawable/fish_lure_mag_squad"
             app:layout_constraintBottom_toBottomOf="@+id/color_label_text_view"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/guideline1"
-            app:layout_constraintTop_toTopOf="@+id/type_label_text_view" />
+            app:layout_constraintTop_toTopOf="@+id/type_label_text_view"
+            tools:src="@drawable/ic_no_photography_24"/>
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline1"

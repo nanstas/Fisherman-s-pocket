@@ -1,5 +1,8 @@
 package com.nanoshkin.fishermanspocket.presentation.viewmodels
 
+import android.net.Uri
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.nanoshkin.fishermanspocket.adapter.OnLureItemClickListener
@@ -24,6 +27,9 @@ class LureViewModel @Inject constructor(
     private val _dataLures = MutableSharedFlow<List<Lure>>(replay = 1, onBufferOverflow = BufferOverflow.DROP_OLDEST)
     val dataLures: SharedFlow<List<Lure>> = _dataLures.asSharedFlow()
 
+    private val _currentLureImage = MutableLiveData<Uri?>()
+    val currentLureImage: LiveData<Uri?> = _currentLureImage
+
     init {
         viewModelScope.launch {
             _dataLures.emitAll(getAllLuresUseCase())
@@ -34,6 +40,14 @@ class LureViewModel @Inject constructor(
         viewModelScope.launch {
             saveLureUseCase(lure = lure)
         }
+    }
+
+    fun changeCurrentLureImage(uri: Uri?) {
+        _currentLureImage.value = uri
+    }
+
+    fun removeCurrentLureImage() {
+        _currentLureImage.value = null
     }
 
 }

@@ -26,6 +26,7 @@
     <string name="weight_with_colon">Weight, gr:</string>
     <string name="version">Версия:</string>
     <string name="save">Save</string>
+    <string name="ok">Ok</string>
     <string name="cancel">Cancel</string>
     <string name="length">Length, mm</string>
     <string name="length_with_colon">Length, mm:</string>
@@ -45,5 +46,9 @@
     <string name="icon_length">Length lure icon</string>
     <string name="fragment_create_edit_lure">Creating a lure</string>
     <string name="lure">Lure</string>
+    <string name="remove">Remove</string>
+
+    <string name="toast_fill_field_name">Fill field lure’s name</string>
+    <string name="alert_dialog_cancellation">The changes won\'t be saved, do you really want to log out?</string>
 
 </resources>
