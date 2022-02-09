@@ -43,6 +43,9 @@
             app:destination="@id/nav_my_lures"
             app:popUpTo="@id/createEditLureFragment"
             app:popUpToInclusive="true" />
+        <argument
+            android:name="lureId"
+            app:argType="integer" />
     </fragment>
 
     <fragment
@@ -52,5 +55,8 @@
         <argument
             android:name="argLureId"
             app:argType="integer" />
+        <action
+            android:id="@+id/action_fullLureFragment_to_createEditLureFragment"
+            app:destination="@id/createEditLureFragment" />
     </fragment>
 </navigation>

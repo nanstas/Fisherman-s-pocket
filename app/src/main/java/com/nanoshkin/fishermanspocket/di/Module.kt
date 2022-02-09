@@ -6,10 +6,7 @@ import com.nanoshkin.fishermanspocket.data.db.AppDb
 import com.nanoshkin.fishermanspocket.data.db.LureDao
 import com.nanoshkin.fishermanspocket.data.repository.LureRepositoryImpl
 import com.nanoshkin.fishermanspocket.domain.repository.LureRepository
-import com.nanoshkin.fishermanspocket.domain.usecases.GetAllLuresUseCase
-import com.nanoshkin.fishermanspocket.domain.usecases.GetLuresByIdUseCase
-import com.nanoshkin.fishermanspocket.domain.usecases.IncreaseInCaughtFishUseCase
-import com.nanoshkin.fishermanspocket.domain.usecases.SaveLureUseCase
+import com.nanoshkin.fishermanspocket.domain.usecases.*
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -38,9 +35,15 @@ object Module {
     fun provideIncreaseInCaughtFishUseCase(lureRepository: LureRepository): IncreaseInCaughtFishUseCase {
         return IncreaseInCaughtFishUseCase(lureRepository = lureRepository)
     }
+
     @Provides
     fun provideGetLuresByIdUseCase(lureRepository: LureRepository): GetLuresByIdUseCase {
         return GetLuresByIdUseCase(lureRepository = lureRepository)
+    }
+
+    @Provides
+    fun provideRemoveLureByIdUseCase(lureRepository: LureRepository): RemoveLureByIdUseCase {
+        return RemoveLureByIdUseCase(lureRepository = lureRepository)
     }
 
     @Provides

@@ -100,7 +100,11 @@ class CreateEditLureFragment : Fragment() {
 
             saveButton.setOnClickListener {
                 if (nameEditText.text.isNullOrEmpty()) {
-                    Toast.makeText(requireContext(), R.string.toast_fill_field_name, Toast.LENGTH_LONG).show()
+                    Toast.makeText(
+                        requireContext(),
+                        R.string.toast_fill_field_name,
+                        Toast.LENGTH_LONG
+                    ).show()
                     return@setOnClickListener
                 }
 
@@ -138,7 +142,8 @@ class CreateEditLureFragment : Fragment() {
                 length = lengthEditText.text.toString().toIntOrNull(),
                 description = descriptionEditText.text.toString(),
                 color = colorEditText.text.toString(),
-                effectiveness = if (caughtFishEditText.text.isNullOrEmpty()) 0 else caughtFishEditText.text.toString().toInt(),
+                effectiveness = if (caughtFishEditText.text.isNullOrEmpty()) 0 else caughtFishEditText.text.toString()
+                    .toInt(),
                 notes = notesEditText.text.toString(),
                 imageUrl = uri.toString()
             )

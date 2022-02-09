@@ -8,4 +8,5 @@ interface LureRepository {
     suspend fun saveLure(lure: Lure)
     suspend fun increaseInCaughtFish(lure: Lure)
     fun getLureById(idLure: Int): Flow<Lure>
+    suspend fun removeLureById(idLure: Int)
 }

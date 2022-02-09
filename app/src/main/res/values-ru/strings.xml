@@ -4,7 +4,8 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_desc">Navigation header</string>
-    <string name="action_settings">Settings</string>
+    <string name="action_edit">Редактировать</string>
+    <string name="action_remove">Удалить</string>
 
     <string name="menu_my_lures">Мои приманки</string>
     <string name="menu_weather">Погода</string>

@@ -39,6 +39,5 @@ class MyLuresFragment : Fragment(R.layout.fragment_my_lures) {
                 adapter.submitList(it)
             }
         }
-
     }
 }

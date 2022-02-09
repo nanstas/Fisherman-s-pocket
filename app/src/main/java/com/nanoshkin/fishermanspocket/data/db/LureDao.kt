@@ -21,6 +21,9 @@ interface LureDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertLures(lures: List<LureEntity>)
+
+    @Query("DELETE FROM LureEntity WHERE id = :id")
+    suspend fun removeLureById(id: Int)
 }
 
 class LureTypeConverter {

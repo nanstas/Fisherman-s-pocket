@@ -6,10 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.nanoshkin.fishermanspocket.domain.models.Lure
-import com.nanoshkin.fishermanspocket.domain.usecases.GetAllLuresUseCase
-import com.nanoshkin.fishermanspocket.domain.usecases.GetLuresByIdUseCase
-import com.nanoshkin.fishermanspocket.domain.usecases.IncreaseInCaughtFishUseCase
-import com.nanoshkin.fishermanspocket.domain.usecases.SaveLureUseCase
+import com.nanoshkin.fishermanspocket.domain.usecases.*
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.BufferOverflow
@@ -23,7 +20,8 @@ class LureViewModel @Inject constructor(
     private val getAllLuresUseCase: GetAllLuresUseCase,
     private val saveLureUseCase: SaveLureUseCase,
     private val increaseInCaughtFishUseCase: IncreaseInCaughtFishUseCase,
-    private val getLuresByIdUseCase: GetLuresByIdUseCase
+    private val getLuresByIdUseCase: GetLuresByIdUseCase,
+    private val removeLureByIdUseCase: RemoveLureByIdUseCase
 ) : ViewModel() {
 
     private var lureId by Delegates.notNull<Int>()
@@ -45,10 +43,15 @@ class LureViewModel @Inject constructor(
         }
     }
 
-
     fun save(lure: Lure) {
         viewModelScope.launch {
             saveLureUseCase(lure = lure)
+        }
+    }
+
+    fun removeLure(id: Int) {
+        viewModelScope.launch {
+            removeLureByIdUseCase(id)
         }
     }
 
@@ -60,8 +63,10 @@ class LureViewModel @Inject constructor(
         _currentLureImage.value = null
     }
 
-    fun increaseInCaughtFish(lure: Lure) = viewModelScope.launch(Dispatchers.Default) {
-        increaseInCaughtFishUseCase(lure)
+    fun increaseInCaughtFish(lure: Lure) {
+        viewModelScope.launch(Dispatchers.Default) {
+            increaseInCaughtFishUseCase(lure)
+        }
     }
 
     fun init(lureId: Int) {

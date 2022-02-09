@@ -10,9 +10,13 @@ class LureRepositoryImpl(
     private val dao: LureDao
 ) : LureRepository {
 
-    override suspend fun getAllLures(): Flow<List<Lure>> = dao.getAllLures()
+    override suspend fun getAllLures(): Flow<List<Lure>> {
+        return dao.getAllLures()
+    }
 
-    override fun getLureById(idLure: Int): Flow<Lure> = dao.getLureById(idLure)
+    override fun getLureById(idLure: Int): Flow<Lure> {
+        return dao.getLureById(idLure)
+    }
 
     override suspend fun saveLure(lure: Lure) {
         dao.insertLure(lure.toEntity())
@@ -23,5 +27,7 @@ class LureRepositoryImpl(
         dao.insertLure(lureForUpdate.toEntity())
     }
 
-
+    override suspend fun removeLureById(idLure: Int) {
+        dao.removeLureById(idLure)
+    }
 }
