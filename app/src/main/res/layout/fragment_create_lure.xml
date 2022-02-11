@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     android:padding="@dimen/spacing_small"
     android:clipToPadding="false"
-    tools:context=".presentation.ui.CreateEditLureFragment">
+    tools:context=".presentation.ui.EditLureFragment">
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"

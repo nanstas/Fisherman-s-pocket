@@ -9,9 +9,6 @@
     <string name="menu_my_lures">My lures</string>
     <string name="menu_weather">Weather</string>
     <string name="menu_info">Info</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-
 
     <string name="name">Name</string>
     <string name="manufacturer">Manufacturer</string>
@@ -45,8 +42,11 @@
     <string name="icon_floatation">Floatation lure icon</string>
     <string name="icon_weight">weight lure icon</string>
     <string name="icon_length">Length lure icon</string>
-    <string name="fragment_create_edit_lure">Creating a lure</string>
-    <string name="lure">Lure</string>
+
+    <string name="label_creating">Creating</string>
+    <string name="label_editing">Editing</string>
+    <string name="label_lure">Lure</string>
+
     <string name="remove">Remove</string>
 
     <string name="toast_fill_field_name">Fill field lure’s name</string>

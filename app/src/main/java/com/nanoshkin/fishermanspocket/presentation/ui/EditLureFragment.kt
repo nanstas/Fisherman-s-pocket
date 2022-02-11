@@ -4,18 +4,19 @@ import android.app.Activity
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.github.dhaval2404.imagepicker.ImagePicker
 import com.nanoshkin.fishermanspocket.R
-import com.nanoshkin.fishermanspocket.databinding.FragmentCreateEditLureBinding
+import com.nanoshkin.fishermanspocket.databinding.FragmentEditLureBinding
 import com.nanoshkin.fishermanspocket.domain.models.Lure
 import com.nanoshkin.fishermanspocket.domain.models.LureDivingDepth
 import com.nanoshkin.fishermanspocket.domain.models.LureFloatation
@@ -25,23 +26,72 @@ import com.nanoshkin.fishermanspocket.utils.Utils.convertLureDivingDepthCategory
 import com.nanoshkin.fishermanspocket.utils.Utils.convertLureFloatationCategory
 import com.nanoshkin.fishermanspocket.utils.Utils.convertLureTypeCategory
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collectLatest
 
 @AndroidEntryPoint
-class CreateEditLureFragment : Fragment() {
+class EditLureFragment : Fragment(R.layout.fragment_edit_lure) {
     private val photoRequestCode = 1
     private val cameraRequestCode = 2
 
     private val viewModel: LureViewModel by viewModels()
-    private lateinit var binding: FragmentCreateEditLureBinding
+    private lateinit var binding: FragmentEditLureBinding
+
+    private val lureId: Int by lazy {
+        val args by navArgs<EditLureFragmentArgs>()
+        args.lureIdArg
+    }
 
     private var uri: Uri? = null
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        binding = FragmentCreateEditLureBinding.inflate(inflater, container, false)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        viewModel.init(lureId)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding = FragmentEditLureBinding.bind(view)
+
+        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
+            viewModel.currentLure.collectLatest { lure ->
+
+                with(binding) {
+                    nameEditText.setText(lure.name)
+                    lure.manufacturer.let { manufacturerEditText.setText(it) }
+                    if (lure.type == null || lure.type.name == "OTHER") typeDropMenuAutoCompleteTextView.setText("") else typeDropMenuAutoCompleteTextView.setText(lure.type.name)
+                    if (lure.divingDepth == null || lure.divingDepth.name == "UNKNOWN")  divingDepthDropMenuAutoCompleteTextView.setText("") else  divingDepthDropMenuAutoCompleteTextView.setText(lure.divingDepth.name)
+                    if (lure.floatation == null || lure.floatation.name == "UNKNOWN") floatationDropMenuAutoCompleteTextView.setText("") else floatationDropMenuAutoCompleteTextView.setText(lure.floatation.name)
+                    lure.weight.let {
+                        if (it != null) {
+                            weightEditText.setText(it.toString())
+                        } else {
+                            weightEditText.setText("")
+                        }
+                    }
+                    lure.length.let {
+                        if (it != null) {
+                            lengthEditText.setText(it.toString())
+                        } else {
+                            lengthEditText.setText("")
+                        }
+                    }
+                    lure.description.let { descriptionEditText.setText(it) }
+                    lure.color.let { colorEditText.setText(it) }
+                    lure.effectiveness.toString().let { caughtFishEditText.setText(it) }
+                    lure.notes.let { notesEditText.setText(it) }
+                    lure.imageUrl.let {
+                        if (it != null) {
+                            currentLurePhotoGroup.visibility = View.VISIBLE
+                            uri = it.toUri()
+                            currentLureImageView.setImageURI(it.toUri())
+                        } else {
+                            currentLurePhotoGroup.visibility = View.GONE
+                        }
+                    }
+                }
+            }
+        }
 
         binding.pickImageButton.setOnClickListener {
             ImagePicker.with(this)
@@ -79,12 +129,6 @@ class CreateEditLureFragment : Fragment() {
             uri = null
         }
 
-        return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
         with(binding) {
             val lureTypeAdapter =
                 ArrayAdapter(requireContext(), R.layout.menu_item, LureType.values())
@@ -109,7 +153,7 @@ class CreateEditLureFragment : Fragment() {
                 }
 
                 viewModel.save(lureForSave())
-                findNavController().navigate(R.id.action_createEditLureFragment_to_nav_my_lures)
+                findNavController().navigateUp()
             }
 
             cancelButton.setOnClickListener {
@@ -132,7 +176,7 @@ class CreateEditLureFragment : Fragment() {
     private fun lureForSave(): Lure {
         with(binding) {
             return Lure(
-                id = null,
+                id = lureId,
                 name = nameEditText.text.toString(),
                 manufacturer = manufacturerEditText.text.toString(),
                 type = convertLureTypeCategory(typeDropMenuAutoCompleteTextView.text.toString()),
@@ -145,7 +189,7 @@ class CreateEditLureFragment : Fragment() {
                 effectiveness = if (caughtFishEditText.text.isNullOrEmpty()) 0 else caughtFishEditText.text.toString()
                     .toInt(),
                 notes = notesEditText.text.toString(),
-                imageUrl = uri.toString()
+                imageUrl = if (uri == null) null else uri.toString()
             )
         }
     }

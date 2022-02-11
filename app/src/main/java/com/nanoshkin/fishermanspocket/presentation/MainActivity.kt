@@ -43,7 +43,7 @@ class MainActivity : AppCompatActivity() {
 
 
         binding.appBarMain.fab.setOnClickListener {
-            navController.navigate(R.id.createEditLureFragment)
+            navController.navigate(R.id.createLureFragment)
         }
     }
 

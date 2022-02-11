@@ -10,9 +10,6 @@
     <string name="menu_my_lures">Мои приманки</string>
     <string name="menu_weather">Погода</string>
     <string name="menu_info">Информация</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-
 
     <string name="name">Наименование</string>
     <string name="manufacturer">Производитель</string>
@@ -46,8 +43,12 @@
     <string name="icon_floatation">Иконка плавучести приманки</string>
     <string name="icon_weight">Иконка веса приманки</string>
     <string name="icon_length">Иконка длинны приманки</string>
-    <string name="fragment_create_edit_lure">Создание приманки</string>
-    <string name="lure">Приманка</string>
+
+
+    <string name="label_creating">Создание</string>
+    <string name="label_editing">Редактирование</string>
+    <string name="label_lure">Приманка</string>
+
     <string name="remove">Удалить</string>
 
     <string name="toast_fill_field_name">Заполни поле название приманки</string>

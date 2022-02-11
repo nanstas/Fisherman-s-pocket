@@ -59,7 +59,7 @@ class FullLureFragment : Fragment(R.layout.fragment_full_lure) {
         if (lure != null) {
             with(binding) {
                 nameTextView.text = lure.name
-                manufacturerTextView.text = lure.manufacturer
+                manufacturerTextView.text = lure.manufacturer ?: "—"
                 typeTextView.text = lure.type?.type ?: "—"
                 divingDepthTextView.text =
                     if (lure.divingDepth == null || lure.divingDepth.divingDepth == "Unknown") "—" else lure.divingDepth.divingDepth
@@ -67,7 +67,7 @@ class FullLureFragment : Fragment(R.layout.fragment_full_lure) {
                 weightTextView.text = lure.weight?.toString() ?: "—"
                 floatationTextView.text =
                     if (lure.floatation == null || lure.floatation.floatation == "Unknown") "—" else lure.floatation.floatation
-                colorTextView.text = lure.color
+                colorTextView.text = lure.color ?: "—"
                 caughtFishCountTextView.text = lure.effectiveness.toString()
                 descriptionTextView.text = lure.description
                 noteTextView.text = lure.notes
@@ -87,7 +87,7 @@ class FullLureFragment : Fragment(R.layout.fragment_full_lure) {
         return when (item.itemId) {
             R.id.action_edit -> {
                 val action =
-                    FullLureFragmentDirections.actionFullLureFragmentToCreateEditLureFragment(lureId)
+                    FullLureFragmentDirections.actionFullLureFragmentToEditLureFragment(lureId)
                 findNavController().navigate(action)
                 true
             }
