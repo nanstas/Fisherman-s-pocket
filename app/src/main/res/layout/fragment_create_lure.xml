@@ -241,7 +241,7 @@
                 app:layout_constraintStart_toStartOf="@+id/current_lure_image_view" />
 
             <androidx.constraintlayout.widget.Group
-                android:id="@+id/current_lure_photo_Group"
+                android:id="@+id/current_lure_photo_group"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:visibility="gone"

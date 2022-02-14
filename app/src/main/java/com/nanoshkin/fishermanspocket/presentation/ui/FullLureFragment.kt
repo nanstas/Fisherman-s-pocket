@@ -48,8 +48,30 @@ class FullLureFragment : Fragment(R.layout.fragment_full_lure) {
             viewModel.currentLure.collectLatest { lure ->
                 renderingUi(lure)
 
-                binding.addFishCountMaterialButton.setOnClickListener {
-                    viewModel.increaseInCaughtFish(lure)
+                with(binding) {
+                    addNoteMaterialButton.setOnClickListener {
+                        addNoteGroup.visibility = View.GONE
+                        editNoteGroup.visibility = View.VISIBLE
+                        notesEditText.setText(lure.notes)
+
+                        saveNoteMaterialButton.setOnClickListener {
+                            viewModel.saveNote(
+                                idLure = lureId,
+                                note = notesEditText.text.toString()
+                            )
+                            addNoteGroup.visibility = View.VISIBLE
+                            editNoteGroup.visibility = View.GONE
+                        }
+
+                        cancelNoteMaterialButton.setOnClickListener {
+                            addNoteGroup.visibility = View.VISIBLE
+                            editNoteGroup.visibility = View.GONE
+                        }
+                    }
+
+                    addFishCountMaterialButton.setOnClickListener {
+                        viewModel.increaseInCaughtFish(lure)
+                    }
                 }
             }
         }

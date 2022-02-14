@@ -14,7 +14,11 @@ interface LureDao {
 
     @Transaction
     @Query("SELECT * FROM LureEntity WHERE id = :id")
-    fun getLureById(id: Int): Flow<Lure>
+    fun getLureByIdFlow(id: Int): Flow<Lure>
+
+    @Transaction
+    @Query("SELECT * FROM LureEntity WHERE id = :id")
+    suspend fun getLureById(id: Int): Lure
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertLure(lure: LureEntity)

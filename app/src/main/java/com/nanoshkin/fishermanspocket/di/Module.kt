@@ -45,6 +45,11 @@ object Module {
     fun provideRemoveLureByIdUseCase(lureRepository: LureRepository): RemoveLureByIdUseCase {
         return RemoveLureByIdUseCase(lureRepository = lureRepository)
     }
+    @Provides
+    @Singleton
+    fun provideSaveNoteUseCase(lureRepository: LureRepository): SaveNoteUseCase {
+        return SaveNoteUseCase(lureRepository = lureRepository)
+    }
 
     @Provides
     fun provideLureDao(db: AppDb): LureDao = db.getLureDao()

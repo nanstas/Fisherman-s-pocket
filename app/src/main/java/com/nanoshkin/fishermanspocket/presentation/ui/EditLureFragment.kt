@@ -59,9 +59,15 @@ class EditLureFragment : Fragment(R.layout.fragment_edit_lure) {
                 with(binding) {
                     nameEditText.setText(lure.name)
                     lure.manufacturer.let { manufacturerEditText.setText(it) }
-                    if (lure.type == null || lure.type.name == "OTHER") typeDropMenuAutoCompleteTextView.setText("") else typeDropMenuAutoCompleteTextView.setText(lure.type.name)
-                    if (lure.divingDepth == null || lure.divingDepth.name == "UNKNOWN")  divingDepthDropMenuAutoCompleteTextView.setText("") else  divingDepthDropMenuAutoCompleteTextView.setText(lure.divingDepth.name)
-                    if (lure.floatation == null || lure.floatation.name == "UNKNOWN") floatationDropMenuAutoCompleteTextView.setText("") else floatationDropMenuAutoCompleteTextView.setText(lure.floatation.name)
+                    if (lure.type == null || lure.type.name == "OTHER") typeDropMenuAutoCompleteTextView.setText(
+                        ""
+                    ) else typeDropMenuAutoCompleteTextView.setText(lure.type.name)
+                    if (lure.divingDepth == null || lure.divingDepth.name == "UNKNOWN") divingDepthDropMenuAutoCompleteTextView.setText(
+                        ""
+                    ) else divingDepthDropMenuAutoCompleteTextView.setText(lure.divingDepth.name)
+                    if (lure.floatation == null || lure.floatation.name == "UNKNOWN") floatationDropMenuAutoCompleteTextView.setText(
+                        ""
+                    ) else floatationDropMenuAutoCompleteTextView.setText(lure.floatation.name)
                     lure.weight.let {
                         if (it != null) {
                             weightEditText.setText(it.toString())

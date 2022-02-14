@@ -4,9 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="@dimen/spacing_small"
     android:clipToPadding="false"
-    tools:context=".presentation.ui.EditLureFragment">
+    android:padding="@dimen/spacing_small">
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
@@ -155,9 +154,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_small"
                 android:hint="@string/color"
+                app:layout_constraintEnd_toStartOf="@id/caught_fish_text_input_layout"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/length_text_input_layout"
-                app:layout_constraintEnd_toStartOf="@id/caught_fish_text_input_layout">
+                app:layout_constraintTop_toBottomOf="@id/length_text_input_layout">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/color_edit_text"
@@ -174,9 +173,9 @@
                 android:layout_marginStart="@dimen/spacing_small"
                 android:layout_marginTop="@dimen/spacing_small"
                 android:hint="@string/caught_fish"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/color_text_input_layout"
-                app:layout_constraintTop_toBottomOf="@id/length_text_input_layout"
-                app:layout_constraintEnd_toEndOf="parent">
+                app:layout_constraintTop_toBottomOf="@id/length_text_input_layout">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/caught_fish_edit_text"
@@ -226,9 +225,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/padding_normal"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/notes_text_input_layout"
-                app:layout_constraintEnd_toEndOf="parent" />
+                app:layout_constraintTop_toBottomOf="@id/notes_text_input_layout" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/remove_current_lure_image_button"
@@ -241,7 +240,7 @@
                 app:layout_constraintStart_toStartOf="@+id/current_lure_image_view" />
 
             <androidx.constraintlayout.widget.Group
-                android:id="@+id/current_lure_photo_Group"
+                android:id="@+id/current_lure_photo_group"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:visibility="gone"

@@ -21,7 +21,8 @@ class LureViewModel @Inject constructor(
     private val saveLureUseCase: SaveLureUseCase,
     private val increaseInCaughtFishUseCase: IncreaseInCaughtFishUseCase,
     private val getLuresByIdUseCase: GetLuresByIdUseCase,
-    private val removeLureByIdUseCase: RemoveLureByIdUseCase
+    private val removeLureByIdUseCase: RemoveLureByIdUseCase,
+    private val saveNoteUseCase: SaveNoteUseCase
 ) : ViewModel() {
 
     private var lureId by Delegates.notNull<Int>()
@@ -66,6 +67,12 @@ class LureViewModel @Inject constructor(
     fun increaseInCaughtFish(lure: Lure) {
         viewModelScope.launch(Dispatchers.Default) {
             increaseInCaughtFishUseCase(lure)
+        }
+    }
+
+    fun saveNote(idLure: Int, note: String) {
+        viewModelScope.launch {
+            saveNoteUseCase(idLure = idLure, note = note)
         }
     }
 
