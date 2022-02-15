@@ -54,4 +54,8 @@
     <string name="toast_fill_field_name">Заполни поле название приманки</string>
     <string name="alert_dialog_cancellation">Изменения не будут сохранены. Вы действительно хотите выйти?</string>
 
+    <string name="humidity_with_colon">Влажность, %:</string>
+    <string name="pressure_with_colon">Давление, hPa:</string>
+    <string name="wind_speed_with_colon">Скорость ветра, м/с:</string>
+
 </resources>
