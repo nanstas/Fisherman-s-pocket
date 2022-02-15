@@ -1,8 +1,8 @@
 package com.nanoshkin.fishermanspocket.utils
 
-import com.nanoshkin.fishermanspocket.domain.models.LureDivingDepth
-import com.nanoshkin.fishermanspocket.domain.models.LureFloatation
-import com.nanoshkin.fishermanspocket.domain.models.LureType
+import com.nanoshkin.fishermanspocket.domain.models.lure.LureDivingDepth
+import com.nanoshkin.fishermanspocket.domain.models.lure.LureFloatation
+import com.nanoshkin.fishermanspocket.domain.models.lure.LureType
 
 object Utils {
     fun convertLureTypeCategory(lureType: String): LureType {

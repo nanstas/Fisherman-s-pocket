@@ -1,4 +1,4 @@
-package com.nanoshkin.fishermanspocket.domain.models
+package com.nanoshkin.fishermanspocket.domain.models.lure
 
 enum class LureFloatation(val floatation: String) {
     FS("FS"),

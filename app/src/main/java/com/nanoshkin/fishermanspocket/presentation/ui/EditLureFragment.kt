@@ -17,10 +17,10 @@ import androidx.navigation.fragment.navArgs
 import com.github.dhaval2404.imagepicker.ImagePicker
 import com.nanoshkin.fishermanspocket.R
 import com.nanoshkin.fishermanspocket.databinding.FragmentEditLureBinding
-import com.nanoshkin.fishermanspocket.domain.models.Lure
-import com.nanoshkin.fishermanspocket.domain.models.LureDivingDepth
-import com.nanoshkin.fishermanspocket.domain.models.LureFloatation
-import com.nanoshkin.fishermanspocket.domain.models.LureType
+import com.nanoshkin.fishermanspocket.domain.models.lure.Lure
+import com.nanoshkin.fishermanspocket.domain.models.lure.LureDivingDepth
+import com.nanoshkin.fishermanspocket.domain.models.lure.LureFloatation
+import com.nanoshkin.fishermanspocket.domain.models.lure.LureType
 import com.nanoshkin.fishermanspocket.presentation.viewmodels.LureViewModel
 import com.nanoshkin.fishermanspocket.utils.Utils.convertLureDivingDepthCategory
 import com.nanoshkin.fishermanspocket.utils.Utils.convertLureFloatationCategory

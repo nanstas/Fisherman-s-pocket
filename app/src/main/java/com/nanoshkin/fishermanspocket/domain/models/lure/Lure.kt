@@ -1,4 +1,4 @@
-package com.nanoshkin.fishermanspocket.domain.models
+package com.nanoshkin.fishermanspocket.domain.models.lure
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize

@@ -10,7 +10,7 @@ import com.nanoshkin.fishermanspocket.R
 import com.nanoshkin.fishermanspocket.adapter.LureListAdapter
 import com.nanoshkin.fishermanspocket.adapter.OnLureItemClickListener
 import com.nanoshkin.fishermanspocket.databinding.FragmentMyLuresBinding
-import com.nanoshkin.fishermanspocket.domain.models.Lure
+import com.nanoshkin.fishermanspocket.domain.models.lure.Lure
 import com.nanoshkin.fishermanspocket.presentation.viewmodels.LureViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest

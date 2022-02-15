@@ -1,6 +1,6 @@
 package com.nanoshkin.fishermanspocket.domain.repository
 
-import com.nanoshkin.fishermanspocket.domain.models.Lure
+import com.nanoshkin.fishermanspocket.domain.models.lure.Lure
 import kotlinx.coroutines.flow.Flow
 
 interface LureRepository {

@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.nanoshkin.fishermanspocket.databinding.ItemLureMinBinding
-import com.nanoshkin.fishermanspocket.domain.models.Lure
+import com.nanoshkin.fishermanspocket.domain.models.lure.Lure
 
 interface OnLureItemClickListener {
     fun onCard(lure: Lure)

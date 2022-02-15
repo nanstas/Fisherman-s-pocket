@@ -1,4 +1,4 @@
-package com.nanoshkin.fishermanspocket.domain.models
+package com.nanoshkin.fishermanspocket.domain.models.lure
 
 enum class LureType(val type: String) {
     MINNOW("Minnow"),

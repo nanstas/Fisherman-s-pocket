@@ -2,7 +2,7 @@ package com.nanoshkin.fishermanspocket.data.repository
 
 import com.nanoshkin.fishermanspocket.data.db.LureDao
 import com.nanoshkin.fishermanspocket.data.entities.toEntity
-import com.nanoshkin.fishermanspocket.domain.models.Lure
+import com.nanoshkin.fishermanspocket.domain.models.lure.Lure
 import com.nanoshkin.fishermanspocket.domain.repository.LureRepository
 import kotlinx.coroutines.flow.Flow
 

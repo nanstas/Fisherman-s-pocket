@@ -3,7 +3,7 @@ package com.nanoshkin.fishermanspocket.data.entities
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.nanoshkin.fishermanspocket.domain.models.Lure
+import com.nanoshkin.fishermanspocket.domain.models.lure.Lure
 
 @Entity(tableName = "LureEntity")
 data class LureEntity(

@@ -2,8 +2,8 @@ package com.nanoshkin.fishermanspocket.data.db
 
 import androidx.room.*
 import com.nanoshkin.fishermanspocket.data.entities.LureEntity
-import com.nanoshkin.fishermanspocket.domain.models.Lure
-import com.nanoshkin.fishermanspocket.domain.models.LureType
+import com.nanoshkin.fishermanspocket.domain.models.lure.Lure
+import com.nanoshkin.fishermanspocket.domain.models.lure.LureType
 import kotlinx.coroutines.flow.Flow
 
 @Dao
