@@ -31,16 +31,16 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/weather_card_view"
             android:layout_width="match_parent"
-            android:layout_height="220dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_normal"
-            android:visibility="gone"
+            android:visibility="visible"
             app:cardCornerRadius="@dimen/corner_radius_huge"
             app:cardElevation="@dimen/elevation_small">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="@dimen/spacing_small">
+                android:padding="@dimen/spacing_normal">
 
                 <TextView
                     android:id="@+id/city_text_view"
@@ -60,6 +60,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/city_text_view"
+                    android:contentDescription="@string/current_weather_image"
                     tools:src="@drawable/ic_weather_01d" />
 
                 <TextView
@@ -67,7 +68,6 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/elevation_normal"
-                    android:inputType="textMultiLine"
                     app:layout_constraintBottom_toBottomOf="@+id/weather_image_view"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/weather_image_view"
@@ -83,7 +83,7 @@
                     app:layout_constraintEnd_toStartOf="@id/weather_image_view"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="@id/weather_image_view"
-                    tools:text="15" />
+                    tools:text="15℃" />
 
                 <TextView
                     android:id="@+id/humidity_label_text_view"
@@ -150,7 +150,56 @@
                     app:layout_constraintBottom_toBottomOf="@+id/wind_speed_label_text_view"
                     app:layout_constraintStart_toEndOf="@+id/wind_speed_text_view"
                     app:layout_constraintTop_toTopOf="@id/wind_speed_label_text_view"
+                    android:contentDescription="@string/wind_direction_image"
                     tools:src="@drawable/ic_wind_direction_24" />
+
+                <TextView
+                    android:id="@+id/date_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/font_small"
+                    app:layout_constraintBottom_toBottomOf="@+id/city_text_view"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/city_text_view"
+                    tools:text="16.10.2022" />
+
+                <TextView
+                    android:id="@+id/sunrise_label_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_tiny"
+                    android:text="@string/sunrise_with_colon"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/wind_speed_label_text_view" />
+
+                <TextView
+                    android:id="@+id/sunrise_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/spacing_tiny"
+                    android:layout_marginTop="@dimen/spacing_tiny"
+                    app:layout_constraintStart_toEndOf="@id/sunrise_label_text_view"
+                    app:layout_constraintTop_toBottomOf="@id/wind_speed_label_text_view"
+                    tools:text="07:30" />
+
+                <TextView
+                    android:id="@+id/sunset_label_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_tiny"
+                    android:text="@string/sunset_with_colon"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/sunrise_label_text_view" />
+
+                <TextView
+                    android:id="@+id/sunset_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/spacing_tiny"
+                    android:layout_marginTop="@dimen/spacing_tiny"
+                    app:layout_constraintStart_toEndOf="@id/sunset_label_text_view"
+                    app:layout_constraintTop_toBottomOf="@id/sunrise_label_text_view"
+                    tools:text="18:30" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>

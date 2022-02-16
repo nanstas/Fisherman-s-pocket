@@ -24,7 +24,7 @@
     <string name="weight_with_colon">Weight, gr:</string>
     <string name="version">Версия:</string>
     <string name="save">Save</string>
-    <string name="ok">Ok</string>
+    <string name="ok">OK</string>
     <string name="cancel">Cancel</string>
     <string name="length">Length, mm</string>
     <string name="length_with_colon">Length, mm:</string>
@@ -91,5 +91,9 @@
     <string name="humidity_with_colon">Humidity, %:</string>
     <string name="pressure_with_colon">Pressure, hPa:</string>
     <string name="wind_speed_with_colon">Wind speed, m/s:</string>
+    <string name="sunrise_with_colon">Sunrise:</string>
+    <string name="sunset_with_colon">Sunset:</string>
+    <string name="current_weather_image">Current weather image</string>
+    <string name="wind_direction_image">Wind direction image</string>
 
 </resources>

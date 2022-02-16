@@ -11,7 +11,8 @@ import com.nanoshkin.fishermanspocket.R
 import com.nanoshkin.fishermanspocket.databinding.FragmentWeatherBinding
 import com.nanoshkin.fishermanspocket.presentation.viewmodels.WeatherViewModel
 import dagger.hilt.android.AndroidEntryPoint
-
+import java.text.SimpleDateFormat
+import java.util.*
 
 @AndroidEntryPoint
 class WeatherFragment : Fragment(R.layout.fragment_weather) {
@@ -29,7 +30,7 @@ class WeatherFragment : Fragment(R.layout.fragment_weather) {
                 weatherCardView.visibility = View.VISIBLE
                 cityTextView.text = currentWeather.name
                 descriptionTextView.text = currentWeather.weather[0].description
-                temperatureTextView.text = currentWeather.main.temp.toInt().toString()
+                temperatureTextView.text = "${currentWeather.main.temp.toInt()}\u2103"
                 val res = getWeatherImageRes(currentWeather.weather[0].icon)
                 Glide.with(this@WeatherFragment)
                     .load(res)
@@ -42,6 +43,9 @@ class WeatherFragment : Fragment(R.layout.fragment_weather) {
                     .load(R.drawable.ic_wind_direction_24)
                     .into(windDirectionImageView)
                 windDirectionImageView.rotation = deg + 180F
+                dateTextView.text = getDate(currentWeather.dt)
+                sunriseTextView.text = getTime(currentWeather.sys.sunrise)
+                sunsetTextView.text = getTime(currentWeather.sys.sunset)
             }
         }
 
@@ -73,4 +77,7 @@ class WeatherFragment : Fragment(R.layout.fragment_weather) {
             "13d", "13n" -> R.drawable.ic_weather_13dn
             else -> R.drawable.ic_weather_50dn
         }
+
+    private fun getDate(date: Int): String = SimpleDateFormat.getDateInstance().format(Date(date * 1000L))
+    private fun getTime(date: Int): String = SimpleDateFormat.getTimeInstance().format(Date(date * 1000L))
 }

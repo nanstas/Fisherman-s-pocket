@@ -57,5 +57,9 @@
     <string name="humidity_with_colon">Влажность, %:</string>
     <string name="pressure_with_colon">Давление, hPa:</string>
     <string name="wind_speed_with_colon">Скорость ветра, м/с:</string>
+    <string name="sunrise_with_colon">Восход:</string>
+    <string name="sunset_with_colon">Закат:</string>
+    <string name="current_weather_image">Изображение текущей погоды</string>
+    <string name="wind_direction_image">Изображение направления ветра</string>
 
 </resources>
