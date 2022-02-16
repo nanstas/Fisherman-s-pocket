@@ -62,4 +62,7 @@
     <string name="current_weather_image">Изображение текущей погоды</string>
     <string name="wind_direction_image">Изображение направления ветра</string>
 
+    <string name="toast_something_error">Что-то пошло не так. Попробуйте позднее.</string>
+    <string name="toast_check_internet_availability">Проверьте наличие интернета</string>
+
 </resources>

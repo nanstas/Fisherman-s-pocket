@@ -75,6 +75,12 @@ object Module {
     }
 
     @Provides
+    @Singleton
+    fun provideGetCurrentWeatherByCoordinatesUseCase(weatherRepository: WeatherRepository): GetCurrentWeatherByCoordinatesUseCase {
+        return GetCurrentWeatherByCoordinatesUseCase(weatherRepository = weatherRepository)
+    }
+
+    @Provides
     fun provideLureDao(db: AppDb): LureDao = db.getLureDao()
 
     @Provides

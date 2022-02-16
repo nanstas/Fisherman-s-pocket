@@ -96,4 +96,7 @@
     <string name="current_weather_image">Current weather image</string>
     <string name="wind_direction_image">Wind direction image</string>
 
+    <string name="toast_something_error">Something went wrong. Try again later.</string>
+    <string name="toast_check_internet_availability">Check Internet availability</string>
+
 </resources>

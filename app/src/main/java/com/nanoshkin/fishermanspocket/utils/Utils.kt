@@ -1,8 +1,12 @@
 package com.nanoshkin.fishermanspocket.utils
 
+import com.nanoshkin.fishermanspocket.data.exceptions.*
 import com.nanoshkin.fishermanspocket.domain.models.lure.LureDivingDepth
 import com.nanoshkin.fishermanspocket.domain.models.lure.LureFloatation
 import com.nanoshkin.fishermanspocket.domain.models.lure.LureType
+import retrofit2.Response
+import java.io.IOException
+import java.net.ConnectException
 
 object Utils {
     fun convertLureTypeCategory(lureType: String): LureType {
@@ -48,6 +52,28 @@ object Utils {
             "F" -> LureFloatation.F
             "FF" -> LureFloatation.FF
             else -> LureFloatation.UNKNOWN
+        }
+    }
+
+    suspend fun <T, R> makeRequest(
+        request: suspend () -> Response<T>,
+        onSuccess: suspend (body: T) -> R,
+        onFailure: (response: Response<T>) -> R = { throw ApiException(it.code(), it.message()) }
+    ): R {
+        try {
+            val response = request()
+            if (!response.isSuccessful) return onFailure(response)
+            val body =
+                response.body() ?: throw ApiException(response.code(), response.message())
+            return onSuccess(body)
+        } catch (e: ConnectException) {
+            throw LostConnectException
+        } catch (e: IOException) {
+            throw ServerException
+        } catch (e: AuthorizationException) {
+            throw AuthorizationException
+        } catch (e: Exception) {
+            throw UnknownException
         }
     }
 }
