@@ -1,12 +1,19 @@
 package com.nanoshkin.fishermanspocket.presentation.ui
 
+import android.Manifest
 import android.annotation.SuppressLint
+import android.app.Activity
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.widget.SearchView
+import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.bumptech.glide.Glide
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationServices
 import com.nanoshkin.fishermanspocket.R
 import com.nanoshkin.fishermanspocket.databinding.FragmentWeatherBinding
 import com.nanoshkin.fishermanspocket.presentation.viewmodels.WeatherViewModel
@@ -16,14 +23,29 @@ import java.util.*
 
 @AndroidEntryPoint
 class WeatherFragment : Fragment(R.layout.fragment_weather) {
+    private val  LOCATION_PERMISSION_REQ_CODE = 1000
     private val viewModel: WeatherViewModel by viewModels()
     private lateinit var binding: FragmentWeatherBinding
+    private lateinit var fusedLocationClient: FusedLocationProviderClient
+    private var latitude: Double = 0.0
+    private var longitude: Double = 0.0
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireContext())
+
+
+    }
 
     @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         binding = FragmentWeatherBinding.bind(view)
+
+        binding.bt.setOnClickListener {
+            getCurrentLocation()
+        }
 
         viewModel.currentWeather.observe(viewLifecycleOwner) { currentWeather ->
             with(binding) {
@@ -80,4 +102,49 @@ class WeatherFragment : Fragment(R.layout.fragment_weather) {
 
     private fun getDate(date: Int): String = SimpleDateFormat.getDateInstance().format(Date(date * 1000L))
     private fun getTime(date: Int): String = SimpleDateFormat.getTimeInstance().format(Date(date * 1000L))
+
+    private fun getCurrentLocation() {
+        // checking location permission
+        if (ActivityCompat.checkSelfPermission(requireContext(),
+                Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+
+            // request permission
+            ActivityCompat.requestPermissions(
+                requireActivity(),
+                arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), LOCATION_PERMISSION_REQ_CODE)
+
+            return
+        }
+
+        fusedLocationClient.lastLocation
+            .addOnSuccessListener { location ->
+                // getting the last known or current location
+                latitude = location.latitude
+                longitude = location.longitude
+
+                binding.tvLatitude.text = "Latitude: ${location.latitude}"
+                binding.tvLongitude.text = "Longitude: ${location.longitude}"
+            }
+            .addOnFailureListener {
+                Toast.makeText(requireContext(), "Failed on getting current location",
+                    Toast.LENGTH_SHORT).show()
+            }
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int, permissions: Array<out String>, grantResults: IntArray
+    ) {
+        when (requestCode) {
+            LOCATION_PERMISSION_REQ_CODE -> {
+                if (grantResults.isNotEmpty() &&
+                    grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    // permission granted
+                } else {
+                    // permission denied
+                    Toast.makeText(requireContext(), "You need to grant permission to access location",
+                        Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+    }
 }

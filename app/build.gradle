@@ -66,6 +66,7 @@ dependencies {
     def version_coroutines = "1.5.2"
     def version_glide = "4.11.0"
     def version_image_picker = "2.1"
+    def version_location = "19.0.1"
 
     implementation "androidx.core:core-ktx:$version_core"
     implementation "androidx.appcompat:appcompat:$version_appcompat"
@@ -105,4 +106,7 @@ dependencies {
     //Image
     implementation "com.github.bumptech.glide:glide:$version_glide"
     implementation "com.github.dhaval2404:imagepicker:$version_image_picker"
+
+    //Location
+    implementation "com.google.android.gms:play-services-location:$version_location"
 }
