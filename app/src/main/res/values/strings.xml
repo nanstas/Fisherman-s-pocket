@@ -100,4 +100,7 @@
     <string name="toast_check_internet_availability">Check Internet availability</string>
     <string name="city_is_not_found">City is note found</string>
 
+    <string name="current_lure_image">Current lure image</string>
+    <string name="button_delete_current_lure_image">Button delete current lure image</string>
+
 </resources>

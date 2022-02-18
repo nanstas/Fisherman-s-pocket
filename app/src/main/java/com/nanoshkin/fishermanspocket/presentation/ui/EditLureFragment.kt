@@ -130,7 +130,7 @@ class EditLureFragment : Fragment(R.layout.fragment_edit_lure) {
             binding.currentLureImageView.setImageURI(uri)
         }
 
-        binding.removeCurrentLureImageButton.setOnClickListener {
+        binding.removeCurrentLureImageView.setOnClickListener {
             viewModel.removeCurrentLureImage()
             uri = null
         }
@@ -200,6 +200,7 @@ class EditLureFragment : Fragment(R.layout.fragment_edit_lure) {
         }
     }
 
+    @Suppress("DEPRECATION")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == ImagePicker.RESULT_ERROR) {

@@ -223,28 +223,29 @@
             <ImageView
                 android:id="@+id/current_lure_image_view"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="200dp"
                 android:layout_marginTop="@dimen/padding_normal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/notes_text_input_layout" />
+                app:layout_constraintTop_toBottomOf="@id/notes_text_input_layout"
+                android:contentDescription="@string/current_lure_image" />
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/remove_current_lure_image_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/spacing_tiny"
-                android:text="@string/remove"
-                app:layout_constraintBottom_toBottomOf="@+id/current_lure_image_view"
-                app:layout_constraintEnd_toEndOf="@+id/current_lure_image_view"
-                app:layout_constraintStart_toStartOf="@+id/current_lure_image_view" />
+            <ImageView
+                android:id="@+id/remove_current_lure_image_view"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:padding="@dimen/padding_tiny"
+                android:src="@drawable/ic_close_24"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/current_lure_image_view"
+                android:contentDescription="@string/button_delete_current_lure_image" />
 
             <androidx.constraintlayout.widget.Group
                 android:id="@+id/current_lure_photo_group"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:visibility="gone"
-                app:constraint_referenced_ids="current_lure_image_view, remove_current_lure_image_button" />
+                app:constraint_referenced_ids="current_lure_image_view, remove_current_lure_image_view" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/take_photo_button"

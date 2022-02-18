@@ -65,4 +65,7 @@
     <string name="toast_check_internet_availability">Проверьте наличие интернета</string>
     <string name="city_is_not_found">Город не найден</string>
 
+    <string name="current_lure_image">Изображение текущей приманки</string>
+    <string name="button_delete_current_lure_image">Кнопка удаления текущей приманки</string>
+
 </resources>
