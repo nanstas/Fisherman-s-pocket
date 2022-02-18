@@ -17,10 +17,10 @@ import com.google.android.gms.location.LocationServices
 import com.nanoshkin.fishermanspocket.R
 import com.nanoshkin.fishermanspocket.databinding.FragmentWeatherBinding
 import com.nanoshkin.fishermanspocket.presentation.viewmodels.WeatherViewModel
+import com.nanoshkin.fishermanspocket.utils.Utils.formatDate
+import com.nanoshkin.fishermanspocket.utils.Utils.formatTime
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
-import java.text.SimpleDateFormat
-import java.util.*
 
 private const val LOCATION_PERMISSION_REQ_CODE = 1000
 
@@ -35,6 +35,16 @@ class WeatherFragment : Fragment(R.layout.fragment_weather) {
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireContext())
 
         getCurrentLocation()
+
+        lifecycleScope.launchWhenStarted {
+            viewModel.currentWeatherSearchException.collectLatest {
+                Toast.makeText(
+                    requireContext(),
+                    R.string.city_is_not_found,
+                    Toast.LENGTH_LONG
+                ).show()
+            }
+        }
 
         lifecycleScope.launchWhenStarted {
             viewModel.currentWeatherLoadException.collectLatest {
@@ -66,6 +76,7 @@ class WeatherFragment : Fragment(R.layout.fragment_weather) {
         viewModel.currentWeather.observe(viewLifecycleOwner) {
             with(binding) {
                 weatherCardView.visibility = View.VISIBLE
+
                 cityTextView.text = it.name
                 descriptionTextView.text = it.weather[0].description
                 temperatureTextView.text = "${it.main.temp.toInt()}\u2103"
@@ -81,9 +92,9 @@ class WeatherFragment : Fragment(R.layout.fragment_weather) {
                     .load(R.drawable.ic_wind_direction_24)
                     .into(windDirectionImageView)
                 windDirectionImageView.rotation = deg + 180F
-                dateTextView.text = getDate(it.dt)
-                sunriseTextView.text = getTime(it.sys.sunrise)
-                sunsetTextView.text = getTime(it.sys.sunset)
+                dateTextView.text = formatDate(it.dt)
+                sunriseTextView.text = formatTime(it.sys.sunrise)
+                sunsetTextView.text = formatTime(it.sys.sunset)
 
                 searchView.onActionViewCollapsed()
             }
@@ -117,12 +128,6 @@ class WeatherFragment : Fragment(R.layout.fragment_weather) {
             "13d", "13n" -> R.drawable.ic_weather_13dn
             else -> R.drawable.ic_weather_50dn
         }
-
-    private fun getDate(date: Int): String =
-        SimpleDateFormat.getDateInstance().format(Date(date * 1000L))
-
-    private fun getTime(date: Int): String =
-        SimpleDateFormat.getTimeInstance().format(Date(date * 1000L))
 
     private fun getCurrentLocation() {
         // checking location permission

@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.nanoshkin.fishermanspocket.data.exceptions.SearchException
 import com.nanoshkin.fishermanspocket.data.exceptions.ServerException
 import com.nanoshkin.fishermanspocket.data.exceptions.UnknownException
 import com.nanoshkin.fishermanspocket.domain.models.weather.CurrentWeather
@@ -11,6 +12,7 @@ import com.nanoshkin.fishermanspocket.domain.usecases.GetCurrentWeatherByCityUse
 import com.nanoshkin.fishermanspocket.domain.usecases.GetCurrentWeatherByCoordinatesUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -23,18 +25,26 @@ class WeatherViewModel @Inject constructor(
     private val _currentWeather = MutableLiveData<CurrentWeather>()
     val currentWeather: LiveData<CurrentWeather> = _currentWeather
 
-    val currentWeatherLoadException = MutableSharedFlow<Unit>()
-    val currentWeatherSomethingException = MutableSharedFlow<Unit>()
+    private val _currentWeatherLoadException = MutableSharedFlow<Unit>()
+    val currentWeatherLoadException = _currentWeatherLoadException.asSharedFlow()
+
+    private val _currentWeatherSomethingException = MutableSharedFlow<Unit>()
+    val currentWeatherSomethingException = _currentWeatherSomethingException.asSharedFlow()
+
+    private val _currentWeatherSearchException = MutableSharedFlow<Unit>()
+    val currentWeatherSearchException = _currentWeatherSearchException.asSharedFlow()
 
     fun getCurrentWeatherByCity(cityName: String) {
         viewModelScope.launch {
             try {
                 _currentWeather.value = getCurrentWeatherByCityUseCase(cityName)!!
+            } catch (e: SearchException) {
+                _currentWeatherSearchException.emit(Unit)
             } catch (e: ServerException) {
-                currentWeatherLoadException.emit(Unit)
+                _currentWeatherLoadException.emit(Unit)
             } catch (e: UnknownException) {
                 e.printStackTrace()
-                currentWeatherSomethingException.emit(Unit)
+                _currentWeatherSomethingException.emit(Unit)
             }
         }
     }
@@ -48,9 +58,9 @@ class WeatherViewModel @Inject constructor(
                         longitude = longitude
                     )!!
             } catch (e: ServerException) {
-                currentWeatherLoadException.emit(Unit)
+                _currentWeatherLoadException.emit(Unit)
             } catch (e: UnknownException) {
-                currentWeatherSomethingException.emit(Unit)
+                _currentWeatherSomethingException.emit(Unit)
             }
         }
     }

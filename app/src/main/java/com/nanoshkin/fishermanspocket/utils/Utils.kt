@@ -1,12 +1,16 @@
 package com.nanoshkin.fishermanspocket.utils
 
-import com.nanoshkin.fishermanspocket.data.exceptions.*
+import android.os.Build
+import androidx.annotation.RequiresApi
 import com.nanoshkin.fishermanspocket.domain.models.lure.LureDivingDepth
 import com.nanoshkin.fishermanspocket.domain.models.lure.LureFloatation
 import com.nanoshkin.fishermanspocket.domain.models.lure.LureType
-import retrofit2.Response
-import java.io.IOException
-import java.net.ConnectException
+import java.text.SimpleDateFormat
+import java.time.Instant
+import java.time.LocalDateTime
+import java.time.ZoneId
+import java.time.format.DateTimeFormatter
+import java.util.*
 
 object Utils {
     fun convertLureTypeCategory(lureType: String): LureType {
@@ -54,26 +58,9 @@ object Utils {
             else -> LureFloatation.UNKNOWN
         }
     }
+    fun formatDate(date: Int): String =
+        SimpleDateFormat.getDateInstance().format(Date(date * 1000L))
 
-    suspend fun <T, R> makeRequest(
-        request: suspend () -> Response<T>,
-        onSuccess: suspend (body: T) -> R,
-        onFailure: (response: Response<T>) -> R = { throw ApiException(it.code(), it.message()) }
-    ): R {
-        try {
-            val response = request()
-            if (!response.isSuccessful) return onFailure(response)
-            val body =
-                response.body() ?: throw ApiException(response.code(), response.message())
-            return onSuccess(body)
-        } catch (e: ConnectException) {
-            throw LostConnectException
-        } catch (e: IOException) {
-            throw ServerException
-        } catch (e: AuthorizationException) {
-            throw AuthorizationException
-        } catch (e: Exception) {
-            throw UnknownException
-        }
-    }
+    fun formatTime(date: Int): String =
+        SimpleDateFormat.getTimeInstance().format(Date(date * 1000L))
 }

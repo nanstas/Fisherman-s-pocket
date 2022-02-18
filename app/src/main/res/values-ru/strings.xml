@@ -44,7 +44,6 @@
     <string name="icon_weight">Иконка веса приманки</string>
     <string name="icon_length">Иконка длинны приманки</string>
 
-
     <string name="label_creating">Создание</string>
     <string name="label_editing">Редактирование</string>
     <string name="label_lure">Приманка</string>
@@ -64,5 +63,6 @@
 
     <string name="toast_something_error">Что-то пошло не так. Попробуйте позднее.</string>
     <string name="toast_check_internet_availability">Проверьте наличие интернета</string>
+    <string name="city_is_not_found">Город не найден</string>
 
 </resources>
