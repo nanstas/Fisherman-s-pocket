@@ -23,7 +23,7 @@ out/
 
 ### Android Studio ###
 local.properties
-gradle.properties
+/gradle.properties
 captures/
 .externalNativeBuild
 .cxx
