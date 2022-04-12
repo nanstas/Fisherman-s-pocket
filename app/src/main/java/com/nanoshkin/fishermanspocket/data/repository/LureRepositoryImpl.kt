@@ -5,8 +5,9 @@ import com.nanoshkin.fishermanspocket.data.entities.toEntity
 import com.nanoshkin.fishermanspocket.domain.models.lure.Lure
 import com.nanoshkin.fishermanspocket.domain.repository.LureRepository
 import kotlinx.coroutines.flow.Flow
+import javax.inject.Inject
 
-class LureRepositoryImpl(
+class LureRepositoryImpl @Inject constructor(
     private val dao: LureDao
 ) : LureRepository {
 
